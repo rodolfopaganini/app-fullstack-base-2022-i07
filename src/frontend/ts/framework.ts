@@ -13,7 +13,7 @@ class Framework{
         }
         xmlHttp.open(method, url, true);
         if (data != undefined) {
-        xmlHttp.setRequestHeader("Content-Type", "application/json");
+            xmlHttp.setRequestHeader("Content-Type", "application/json");
             xmlHttp.send(JSON.stringify(data));
         } else {
             xmlHttp.send();
