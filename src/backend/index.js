@@ -17,17 +17,24 @@ app.get('/devices/', function(req, res, next) {
     devices = [
         { 
             'id': 1, 
-            'name': 'Lampara 1', 
-            'description': 'Luz living', 
+            'name': 'Main lamp - living room', 
+            'description': 'Main lamp of the living room', 
             'state': 0, 
             'type': 1, 
         },
         { 
             'id': 2, 
-            'name': 'Ventilador 1', 
-            'description': 'Ventilador Habitacion', 
+            'name': 'Fan - living room', 
+            'description': 'Roof fan of the livinf room', 
             'state': 1, 
             'type': 2, 
+        },
+        { 
+            'id': 3, 
+            'name': 'Main lamp - bedroom', 
+            'description': 'Main lamp of the bedroom', 
+            'state': 0, 
+            'type': 1, 
         },
     ]
     res.send(JSON.stringify(devices)).status(200);
