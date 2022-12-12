@@ -22,9 +22,15 @@ class Main implements EventListenerObject, HandleResponse{
             grid += ` <li class="collection-item avatar">`;
 
             if (device.type == 1) {
-                grid+=`<img src="static/images/lightbulb.png" alt="" class="circle"> `   
+                grid+=`<img src="static/images/light_bulb.png" alt="" class="circle"> `
+            } else if (device.type == 2){
+                grid+=`<img src="static/images/voice_command.png" alt="" class="circle"> `
+            } else if (device.type == 3){
+                grid+=`<img src="static/images/music.png" alt="" class="circle"> `
+            } else if (device.type == 4){
+                grid+=`<img src="static/images/air_conditioner.png" alt="" class="circle"> `
             } else {
-                grid+=`<img src="static/images/window.png" alt="" class="circle"> `  
+                grid+=`<img src="static/images/alarm.png" alt="" class="circle"> `
             }
 
             grid += ` <span class="title negrita">${device.name}</span>
