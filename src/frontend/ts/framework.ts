@@ -1,15 +1,11 @@
 class Framework{
-    public executeRequest(method: string, url: string, data?: any) {
+    public executeRequest(method: string, url: string, responseHandler: HandleResponse, data?: any) {
         let xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = () => {
             if (xmlHttp.readyState == 4) {
                 if (xmlHttp.status == 200) {
                     let devicesList: Array<Device> = JSON.parse(xmlHttp.responseText);
-                    let devicesBox = document.getElementById("devicesBox");
-                    devicesBox.innerHTML = `<h4>Devices to show" ${devicesList.length}:</h4>`;
-                    for (let device of devicesList) {
-                        devicesBox.innerHTML +=  `<h5>${device.id}  -  ${device.name}</h5>`;
-                    }
+                    responseHandler.loadGrid(devicesList);
                 } else {
                     alert("Request error");
                 }
