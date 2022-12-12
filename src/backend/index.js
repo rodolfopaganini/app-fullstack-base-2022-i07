@@ -13,52 +13,23 @@ app.use(express.static('/home/node/app/static/'));
 
 //=======[ Main module code ]==================================================
 
+// load devices info form file
+const fileName = './devices.json';
+var devices = require(fileName);
+
 app.get('/devices/', function(req, res, next) {
-    devices = [
-        { 
-            'id': 1, 
-            'name': 'Main lamp - living room', 
-            'description': 'Switch the status of the main lamp of the living room', 
-            'state': 0, 
-            'type': 1, 
-        },
-        { 
-            'id': 6, 
-            'name': 'Main lamp - bedroom', 
-            'description': 'Switch the status of the main lamp of the bedroom', 
-            'state': 0, 
-            'type': 1, 
-        },
-        { 
-            'id': 2, 
-            'name': 'Voice control', 
-            'description': 'Enable voice control', 
-            'state': 1, 
-            'type': 2, 
-        },
-        { 
-            'id': 3, 
-            'name': 'Music - living room', 
-            'description': 'Play music in the living room', 
-            'state': 0, 
-            'type': 3, 
-        },
-        { 
-            'id': 4, 
-            'name': 'Air conditioner', 
-            'description': 'Switch the status of the air conditioner', 
-            'state': 0, 
-            'type': 4, 
-        },
-        { 
-            'id': 5, 
-            'name': 'Alarm', 
-            'description': 'Enable the alarm', 
-            'state': 0, 
-            'type': 5, 
-        },
-    ]
-    res.send(JSON.stringify(devices)).status(200);
+    res.json(devices).status(200);
+});
+
+app.post('/updateDevice/', function(req, res, next) {
+    for (let device of devices) {
+        if (device.id == req.query.id) {
+            for (let param in req.query) {
+                device[param] = req.query[param];
+            }
+        }
+    }
+    res.json(devices).status(200);
 });
 
 app.listen(PORT, function(req, res) {
