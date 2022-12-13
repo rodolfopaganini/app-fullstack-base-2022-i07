@@ -5,11 +5,20 @@ class Main implements EventListenerObject, HandleResponse{
         this.framework.executeRequest("GET", "http://localhost:8000/devices", this);
     }
 
+    updateDevice(json) {
+        this.framework.executeRequest("POST", "http://localhost:8000/updateDevice", this, json);
+    }
+
     handleEvent(object: Event): void {
         let eventObject: HTMLElement;
         eventObject = <HTMLElement>object.target;
         if (eventObject.id == "btnGreet") {
             this.getDevices();
+        } else if (eventObject.id.startsWith("cb_")) {
+            let deviceId: number = +eventObject.id.substring(3);
+            let newState: boolean = (<HTMLInputElement>eventObject).checked;
+            let json = {id: deviceId, state: newState};
+            this.updateDevice(json);
         }
         // Add else if for all the other buttons
     }
