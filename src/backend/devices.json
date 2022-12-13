@@ -3,42 +3,42 @@
         "id": 1,
         "name": "Main lamp - living room",
         "description": "Switch the status of the main lamp of the living room",
-        "state": 0,
+        "state": false,
         "type": 1
     },
     { 
         "id": 6,
         "name": "Main lamp - bedroom",
         "description": "Switch the status of the main lamp of the bedroom",
-        "state": 0,
+        "state": false,
         "type": 1
     },
     { 
         "id": 2,
         "name": "Voice control",
         "description": "Enable voice control",
-        "state": 1,
+        "state": true,
         "type": 2
     },
     { 
         "id": 3,
         "name": "Music - living room",
         "description": "Play music in the living room",
-        "state": 0,
+        "state": false,
         "type": 3
     },
     { 
         "id": 4,
         "name": "Air conditioner",
         "description": "Switch the status of the air conditioner",
-        "state": 0,
+        "state": false,
         "type": 4
     },
     { 
         "id": 5,
         "name": "Alarm",
         "description": "Enable the alarm",
-        "state": 0,
+        "state": false,
         "type": 5
     }
 ]
