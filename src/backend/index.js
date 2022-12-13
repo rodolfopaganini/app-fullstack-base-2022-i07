@@ -21,6 +21,17 @@ app.get('/devices/', function(req, res, next) {
     res.json(devices).status(200);
 });
 
+app.post('/newDevice/', function(req, res, next) {
+    devices.push({
+        id: req.query.id,
+        state: req.query.state,
+        name: req.query.name,
+        description: req.query.description,
+        type: req.query.type
+    });
+    res.json(devices).status(200);
+});
+
 app.post('/updateDevice/', function(req, res, next) {
     for (let device of devices) {
         if (device.id == req.body.id) {

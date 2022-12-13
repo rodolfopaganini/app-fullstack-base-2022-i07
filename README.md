@@ -169,7 +169,7 @@ El front end está escrito en TypeScript, donde la mayoría de las implementacio
 
 Para el backend se optó por almacenar en memoria los dispositivos y su información (prescindiendo así del uso de una base de datos), y el estado inicial de los dispositivos se [lee](https://github.com/rodolfopaganini/app-fullstack-base-2022-i07/blob/565c77ae09eaba542daad2a15cae6d13ea80eead/src/backend/index.js#L17-L18) del archivo [devices.json](/src/backend/devices.json).
 
-El código se encuentra principalmente en el archivo [index.js](/src/backend/index.js), donde se implementa [un método para traer información de todos los dispositivos](https://github.com/rodolfopaganini/app-fullstack-base-2022-i07/blob/565c77ae09eaba542daad2a15cae6d13ea80eead/src/backend/index.js#L20-L22) y [otro para modificar un dispositivo](https://github.com/rodolfopaganini/app-fullstack-base-2022-i07/blob/565c77ae09eaba542daad2a15cae6d13ea80eead/src/backend/index.js#L24-L33).
+El código se encuentra principalmente en el archivo [index.js](/src/backend/index.js), donde se implementa un método para traer información de todos los dispositivos, otro para modificar un dispositivo y otro para añadir un dispositivo.
 
 <details><summary><b>Ver los endpoints disponibles</b></summary><br>
 
@@ -227,6 +227,46 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
             "description": "Switch the status of the main lamp of the bedroom",
             "state": true,
             "type": 1
+        }
+    ]
+}
+``` 
+
+3) Añadir un dispositivo.
+
+```json
+{
+    "method": "post",
+    "request_headers": "application/json",
+    "request_body": {
+        "id": 1,
+        "state": true,
+        "name": "Music - bedroom",
+        "description": "Switch music of the bedroom",
+        "type": 3
+    },
+    "response_code": 200,
+    "response_body": [
+        {
+            "id": 1,
+            "name": "Main lamp - living room",
+            "description": "Switch the status of the main lamp of the living room",
+            "state": true,
+            "type": 1
+        },
+        {
+            "id": 6,
+            "name": "Main lamp - bedroom",
+            "description": "Switch the status of the main lamp of the bedroom",
+            "state": true,
+            "type": 1
+        },
+        {
+            "id": 1,
+            "state": true,
+            "name": "Music - bedroom",
+            "description": "Switch music of the bedroom",
+            "type": 3
         }
     ]
 }
