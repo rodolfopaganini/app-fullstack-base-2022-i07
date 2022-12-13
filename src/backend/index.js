@@ -23,9 +23,9 @@ app.get('/devices/', function(req, res, next) {
 
 app.post('/updateDevice/', function(req, res, next) {
     for (let device of devices) {
-        if (device.id == req.query.id) {
-            for (let param in req.query) {
-                device[param] = req.query[param];
+        if (device.id == req.body.id) {
+            for (let param in req.body) {
+                device[param] = req.body[param];
             }
         }
     }
