@@ -131,6 +131,7 @@ En la siguiente ilustración podés ver cómo está organizado el proyecto para 
 ├── doc                         # documentacion general del proyecto
 └── src                         # directorio codigo fuente
 │   ├── backend                 # directorio para el backend de la aplicacion
+│   │   ├── devices.json        # archivo local que guarda el estado del hogar inteligente
 │   │   ├── index.js            # codigo principal del backend
 │   │   ├── mysql-connector.js  # codigo de conexion a la base de datos
 │   │   ├── package.json        # configuracion de proyecto NodeJS
@@ -158,15 +159,17 @@ En esta sección podés ver los detalles específicos de funcionamiento del cód
 
 ### Agregar un dispositivo
 
-Completá los pasos para agregar un dispositivo desde el cliente web.
+Completá los pasos para agregar un dispositivo desde el cliente web (no implementado por el momento).
 
 ### Frontend
 
-Completá todos los detalles sobre cómo armaste el frontend, sus interacciones, etc.
+El front end está escrito en TypeScript, donde la mayoría de las implementaciones se encuentran en [main.ts](/src/frontend/ts/main.ts). En la misma carpeta que se encuentran definiciones de interfaces (`HandleResponse`) y clases (`Device`, `Framework`). La primera representa a cada dispositivo inteligente del hogar, y la segunda implementa AJAX, encargándose de los requests.
 
 ### Backend
 
-Completá todos los detalles de funcionamiento sobre el backend, sus interacciones con el cliente web, la base de datos, etc.
+Para el backend se optó por almacenar en memoria los dispositivos y su información (prescindiendo así del uso de una base de datos), y el estado inicial de los dispositivos se [lee](https://github.com/rodolfopaganini/app-fullstack-base-2022-i07/blob/565c77ae09eaba542daad2a15cae6d13ea80eead/src/backend/index.js#L17-L18) del archivo [devices.json](/src/backend/devices.json).
+
+El código se encuentra principalmente en el archivo [index.js](/src/backend/index.js), donde se implementa [un método para traer información de todos los dispositivos](https://github.com/rodolfopaganini/app-fullstack-base-2022-i07/blob/565c77ae09eaba542daad2a15cae6d13ea80eead/src/backend/index.js#L20-L22) y [otro para modificar un dispositivo](https://github.com/rodolfopaganini/app-fullstack-base-2022-i07/blob/565c77ae09eaba542daad2a15cae6d13ea80eead/src/backend/index.js#L24-L33).
 
 <details><summary><b>Ver los endpoints disponibles</b></summary><br>
 
@@ -180,15 +183,52 @@ Completá todos los endpoints del backend con los metodos disponibles, los heade
     "request_headers": "application/json",
     "request_body": "",
     "response_code": 200,
+    "response_body": [
+        {
+            "id": 1,
+            "name": "Main lamp - living room",
+            "description": "Switch the status of the main lamp of the living room",
+            "state": false,
+            "type": 1
+        },
+        {
+            "id": 6,
+            "name": "Main lamp - bedroom",
+            "description": "Switch the status of the main lamp of the bedroom",
+            "state": true,
+            "type": 1
+        }
+    ]
+}
+``` 
+
+2) Actualizar un dispositivo.
+
+```json
+{
+    "method": "post",
+    "request_headers": "application/json",
     "request_body": {
-        "devices": [
-            {
-                "id": 1,
-                "status": true,
-                "description": "Kitchen light"
-            }
-        ]
+        "id": 1,
+        "state": true
     },
+    "response_code": 200,
+    "response_body": [
+        {
+            "id": 1,
+            "name": "Main lamp - living room",
+            "description": "Switch the status of the main lamp of the living room",
+            "state": true,
+            "type": 1
+        },
+        {
+            "id": 6,
+            "name": "Main lamp - bedroom",
+            "description": "Switch the status of the main lamp of the bedroom",
+            "state": true,
+            "type": 1
+        }
+    ]
 }
 ``` 
 
